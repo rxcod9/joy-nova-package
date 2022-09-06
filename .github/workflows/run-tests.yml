@@ -13,7 +13,7 @@ jobs:
             fail-fast: false
             matrix:
                 php: [7.4]
-                laravel: [8.*, 7.*]
+                laravel: [8.*]
                 dependency-version: [prefer-lowest, prefer-stable]
                 include:
                     - laravel: 9.*
@@ -22,8 +22,6 @@ jobs:
                       dependency-version: prefer-stable
                     - laravel: 8.*
                       testbench: 6.*
-                    - laravel: 7.*
-                      testbench: 5.*
 
         name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.dependency-version }}
 
@@ -54,7 +52,7 @@ jobs:
             - name: Install dependencies
               run: |
                   composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-                  composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+                  composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction
 
             - name: Remove Composer auth
               run: rm -f $GITHUB_WORKSPACE/auth.json
