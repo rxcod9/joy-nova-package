@@ -30,7 +30,7 @@ jobs:
               run: sudo apt-get update --fix-missing
 
             - name: Checkout code
-              uses: actions/checkout@v4
+              uses: actions/checkout@v5
               with:
                 ssh-key: ${{ secrets.NOVA_SSH_KEY }}
 
